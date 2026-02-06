@@ -1,10 +1,10 @@
 package com.zerothreat.app.ui.onboarding
 
-import androidx. compose.foundation.Image
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material. icons.Icons
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -12,13 +12,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui. text.font.FontWeight
-import androidx.compose.ui.text. style.TextAlign
-import androidx. compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.*
 import com.zerothreat.app.R
-import com. zerothreat.app.ui.theme.*
+import com.zerothreat.app.ui.theme.*
 import kotlinx.coroutines.launch
 
 data class OnboardingPage(
@@ -36,7 +36,7 @@ fun OnboardingScreen(
         OnboardingPage(
             title = "Real-Time Protection",
             description = "ZeroThreat monitors all incoming links across SMS, email, and messaging apps to detect phishing attempts before you click.",
-            icon = Icons. Default.Shield
+            icon = Icons.Default.Shield
         ),
         OnboardingPage(
             title = "Smart Detection",
@@ -64,7 +64,7 @@ fun OnboardingScreen(
             .background(DarkBackground)
     ) {
         Column(
-            modifier = Modifier. fillMaxSize()
+            modifier = Modifier.fillMaxSize()
         ) {
             // Skip button
             Row(
@@ -104,13 +104,13 @@ fun OnboardingScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                horizontalArrangement = Arrangement. SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 if (pagerState.currentPage > 0) {
                     OutlinedButton(
                         onClick = {
                             scope.launch {
-                                pagerState.animateScrollToPage(pagerState. currentPage - 1)
+                                pagerState.animateScrollToPage(pagerState.currentPage - 1)
                             }
                         },
                         colors = ButtonDefaults.outlinedButtonColors(
@@ -120,14 +120,14 @@ fun OnboardingScreen(
                         Text("Back")
                     }
                 } else {
-                    Spacer(modifier = Modifier. width(80.dp))
+                    Spacer(modifier = Modifier.width(80.dp))
                 }
 
                 Button(
                     onClick = {
                         if (pagerState.currentPage < pages.size - 1) {
                             scope.launch {
-                                pagerState.animateScrollToPage(pagerState. currentPage + 1)
+                                pagerState.animateScrollToPage(pagerState.currentPage + 1)
                             }
                         } else {
                             onFinish()
@@ -161,7 +161,7 @@ fun OnboardingPageContent(page: OnboardingPage) {
         verticalArrangement = Arrangement.Center
     ) {
         Icon(
-            imageVector = page. icon,
+            imageVector = page.icon,
             contentDescription = page.title,
             tint = ElectricPurple,
             modifier = Modifier.size(100.dp)
@@ -181,7 +181,7 @@ fun OnboardingPageContent(page: OnboardingPage) {
 
         Text(
             text = page.description,
-            style = MaterialTheme.typography. bodyLarge,
+            style = MaterialTheme.typography.bodyLarge,
             color = TextSecondary,
             textAlign = TextAlign.Center,
             lineHeight = 24.sp

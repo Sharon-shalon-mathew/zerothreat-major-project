@@ -2,7 +2,7 @@
 package com.zerothreat.app.data
 
 import android.content.Context
-import android. content.SharedPreferences
+import android.content.SharedPreferences
 
 class AppPreferences(context: Context) {
     private val prefs:  SharedPreferences =

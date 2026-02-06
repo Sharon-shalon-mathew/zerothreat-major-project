@@ -1,9 +1,9 @@
 package com.zerothreat.app.ui.mode
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation. layout.*
-import androidx.compose.foundation. shape.RoundedCornerShape
-import androidx.compose.material. icons.Icons
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui. unit.dp
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zerothreat.app.data.AppPreferences
 import com.zerothreat.app.ui.theme.*
@@ -37,7 +37,7 @@ fun ModeSelectionScreen(
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier. height(32.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         Text(
             text = "Choose Your Protection Mode",
@@ -47,7 +47,7 @@ fun ModeSelectionScreen(
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier. height(8.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Text(
             text = "You can change this anytime in settings",
@@ -66,11 +66,11 @@ fun ModeSelectionScreen(
             onClick = { selectedMode = AppMode.MANUAL }
         )
 
-        Spacer(modifier = Modifier. height(16.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         // Smart Mode Card
         ModeCard(
-            icon = Icons. Default.AutoAwesome,
+            icon = Icons.Default.AutoAwesome,
             title = "Smart Mode",
             description = "Automatic real-time protection across all apps. Enable what you need below.",
             isSelected = selectedMode == AppMode.SMART,
@@ -79,10 +79,10 @@ fun ModeSelectionScreen(
 
         // Smart Mode Options
         if (selectedMode == AppMode.SMART) {
-            Spacer(modifier = Modifier. height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             Card(
-                modifier = Modifier. fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = CardBackground
                 ),
@@ -107,7 +107,7 @@ fun ModeSelectionScreen(
                             imageVector = Icons.Default.Notifications,
                             contentDescription = "Notifications",
                             tint = ElectricPurple,
-                            modifier = Modifier. size(24.dp)
+                            modifier = Modifier.size(24.dp)
                         )
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
@@ -136,9 +136,9 @@ fun ModeSelectionScreen(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    Divider(color = TextMuted. copy(alpha = 0.2f))
+                    Divider(color = TextMuted.copy(alpha = 0.2f))
 
-                    Spacer(modifier = Modifier. height(16.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     // Link Monitoring Toggle
                     Row(
@@ -179,20 +179,20 @@ fun ModeSelectionScreen(
             }
         }
 
-        Spacer(modifier = Modifier. weight(1f))
+        Spacer(modifier = Modifier.weight(1f))
 
         // Continue Button
         Button(
             onClick = {
-                selectedMode?. let { mode ->
+                selectedMode?.let { mode ->
                     // Save preferences based on mode
                     when (mode) {
-                        AppMode. MANUAL -> {
+                        AppMode.MANUAL -> {
                             appPreferences.smartModeEnabled = false
                             appPreferences.notificationMonitoring = false
                             appPreferences.linkMonitoring = false
                         }
-                        AppMode. SMART -> {
+                        AppMode.SMART -> {
                             appPreferences.smartModeEnabled = true
                             appPreferences.notificationMonitoring = notificationMonitoring
                             appPreferences.linkMonitoring = linkMonitoring
@@ -205,7 +205,7 @@ fun ModeSelectionScreen(
                 .fillMaxWidth()
                 .height(56.dp),
             enabled = selectedMode != null,
-            colors = ButtonDefaults. buttonColors(
+            colors = ButtonDefaults.buttonColors(
                 containerColor = ElectricPurple,
                 disabledContainerColor = TextMuted
             ),
@@ -232,9 +232,9 @@ fun ModeCard(
 ) {
     Card(
         onClick = onClick,
-        modifier = Modifier. fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = if (isSelected) ElectricPurple. copy(alpha = 0.15f) else CardBackground
+            containerColor = if (isSelected) ElectricPurple.copy(alpha = 0.15f) else CardBackground
         ),
         shape = RoundedCornerShape(16.dp),
         border = if (isSelected) {

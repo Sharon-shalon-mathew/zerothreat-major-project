@@ -4,32 +4,32 @@ import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 import com.zerothreat.app.R
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation. background
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation. layout.Column
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx. compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout. fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout. padding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx. compose.foundation.layout.width
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx. compose.foundation.shape.RoundedCornerShape
-import androidx. compose.material.icons.Icons
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Block
-import androidx. compose.material.icons.filled. CheckCircle
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Language
-import androidx.compose.material. icons.filled.Link
+import androidx.compose.material.icons.filled.Link
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose. material.icons.filled.Message
-import androidx.compose.material.icons.filled. Notifications
+import androidx.compose.material.icons.filled.Message
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Shield
-import androidx.compose.material.icons. filled.Warning
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -48,7 +48,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text. font.FontWeight
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -108,7 +108,7 @@ fun DashboardScreen(
         // SECTION 3: Threat Trend Chart
         item {
             if (uiState.trendData.isNotEmpty()) {
-                Spacer(modifier = Modifier. height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
                 ThreatTrendChart(trendData = uiState.trendData)
             }
         }
@@ -149,7 +149,7 @@ fun SecurityStatusHeader(isProtected: Boolean) {
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         PureBlack,
-                        PurpleGlow. copy(alpha = 0.3f),
+                        PurpleGlow.copy(alpha = 0.3f),
                         ElectricPurple.copy(alpha = 0.2f)
                     )
                 )
@@ -164,7 +164,7 @@ fun SecurityStatusHeader(isProtected: Boolean) {
             Image(
                 painter = painterResource(id = R.drawable.shield_logo),
                 contentDescription = "ZeroThreat Shield",
-                modifier = Modifier. size(100.dp)
+                modifier = Modifier.size(100.dp)
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -175,10 +175,10 @@ fun SecurityStatusHeader(isProtected: Boolean) {
                 color = TextPrimary,
                 fontWeight = FontWeight.Bold
             )
-            Spacer(modifier = Modifier. height(4.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = "ZeroThreat is actively monitoring links across apps",
-                style = MaterialTheme. typography.bodyMedium,
+                style = MaterialTheme.typography.bodyMedium,
                 color = TextSecondary
             )
         }
@@ -314,7 +314,7 @@ fun ThreatTrendChart(trendData: List<Int>) {
                     .height(100.dp)
             ) {
                 val maxValue = trendData.maxOrNull() ?: 1
-                val pointSpacing = size.width / (trendData. size - 1)
+                val pointSpacing = size.width / (trendData.size - 1)
 
                 val path = Path()
                 trendData.forEachIndexed { index, value ->
@@ -356,13 +356,13 @@ fun ThreatSourcesSection(sources: ThreatSources) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
-        colors = CardDefaults. cardColors(containerColor = CardBackground),
+        colors = CardDefaults.cardColors(containerColor = CardBackground),
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = "Threat Sources",
-                style = MaterialTheme. typography.titleMedium,
+                style = MaterialTheme.typography.titleMedium,
                 color = TextPrimary,
                 fontWeight = FontWeight.SemiBold
             )
@@ -421,7 +421,7 @@ fun SourceItem(icon: ImageVector, label: String, count: Int) {
 fun RecentAlertsSection(alerts: List<ThreatAlert>) {
     Column(modifier = Modifier.padding(horizontal = 16.dp)) {
         Row(
-            modifier = Modifier. fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -470,7 +470,7 @@ fun AlertItem(alert: ThreatAlert) {
                         }
                     )
             )
-            Spacer(modifier = Modifier. width(12.dp))
+            Spacer(modifier = Modifier.width(12.dp))
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
@@ -479,7 +479,7 @@ fun AlertItem(alert: ThreatAlert) {
                     color = TextPrimary,
                     maxLines = 1
                 )
-                Spacer(modifier = Modifier. height(4.dp))
+                Spacer(modifier = Modifier.height(4.dp))
                 Row {
                     Text(
                         text = alert.source,
@@ -520,7 +520,7 @@ fun PrivacyStatement() {
         shape = RoundedCornerShape(12.dp)
     ) {
         Row(
-            modifier = Modifier. padding(16.dp),
+            modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(

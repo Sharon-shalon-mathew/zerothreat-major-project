@@ -3,8 +3,8 @@ package com.zerothreat.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation. layout. padding
-import androidx.compose.material. icons.Icons
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -16,21 +16,21 @@ import com.zerothreat.app.data.AppPreferences
 import com.zerothreat.app.data.AppDatabase
 import com.zerothreat.app.data.CheckedUrl
 import com.zerothreat.app.data.UrlRepository
-import com. zerothreat.app.ui.alerts.ThreatAlertDialog
-import com.zerothreat.app. ui.alerts.ThreatLevel
+import com.zerothreat.app.ui.alerts.ThreatAlertDialog
+import com.zerothreat.app.ui.alerts.ThreatLevel
 import com.zerothreat.app.ui.dashboard.DashboardScreen
-import com.zerothreat.app. ui.info.AboutScreen
-import com.zerothreat.app.ui.info. HelpScreen
-import com.zerothreat.app.ui.info. PrivacyPolicyScreen
+import com.zerothreat.app.ui.info.AboutScreen
+import com.zerothreat.app.ui.info.HelpScreen
+import com.zerothreat.app.ui.info.PrivacyPolicyScreen
 import com.zerothreat.app.ui.blacklist.BlacklistScreen
 import com.zerothreat.app.ui.manual.ManualCheckScreen
 import com.zerothreat.app.ui.mode.AppMode
 import com.zerothreat.app.ui.mode.ModeSelectionScreen
 import com.zerothreat.app.ui.onboarding.OnboardingScreen
 import com.zerothreat.app.ui.permissions.PermissionRequestScreen
-import com.zerothreat.app.ui.settings. SettingsScreen
-import com. zerothreat.app.ui.splash.SplashScreen
-import com.zerothreat.app. ui.theme.*
+import com.zerothreat.app.ui.settings.SettingsScreen
+import com.zerothreat.app.ui.splash.SplashScreen
+import com.zerothreat.app.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     private lateinit var appPreferences: AppPreferences
@@ -72,7 +72,7 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
     var showBottomBar by remember { mutableStateOf(false) }
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?. route
+    val currentRoute = navBackStackEntry?.destination?.route
 
     val startDestination = remember {
         when {
@@ -99,7 +99,7 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
                     containerColor = DarkBackground
                 ) {
                     NavigationBarItem(
-                        selected = currentRoute == Screen.Dashboard. route,
+                        selected = currentRoute == Screen.Dashboard.route,
                         onClick = {
                             navController.navigate(Screen.Dashboard.route) {
                                 launchSingleTop = true
@@ -112,7 +112,7 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
                             selectedTextColor = ElectricPurple,
                             unselectedIconColor = TextMuted,
                             unselectedTextColor = TextMuted,
-                            indicatorColor = ElectricPurple. copy(alpha = 0.2f)
+                            indicatorColor = ElectricPurple.copy(alpha = 0.2f)
                         )
                     )
 
@@ -155,7 +155,7 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
                     NavigationBarItem(
                         selected = currentRoute == Screen.Settings.route,
                         onClick = {
-                            navController.navigate(Screen.Settings. route) {
+                            navController.navigate(Screen.Settings.route) {
                                 launchSingleTop = true
                             }
                         },
@@ -176,7 +176,7 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
         NavHost(
             navController = navController,
             startDestination = startDestination,
-            modifier = Modifier. padding(paddingValues)
+            modifier = Modifier.padding(paddingValues)
         ) {
             composable(Screen.Splash.route) {
                 SplashScreen(
@@ -193,19 +193,19 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
                     onFinish = {
                         appPreferences.onboardingCompleted = true
                         appPreferences.isFirstLaunch = false
-                        navController.navigate(Screen. Permissions.route) {
+                        navController.navigate(Screen.Permissions.route) {
                             popUpTo(Screen.Onboarding.route) { inclusive = true }
                         }
                     }
                 )
             }
 
-            composable(Screen.Permissions. route) {
+            composable(Screen.Permissions.route) {
                 PermissionRequestScreen(
                     onPermissionsGranted = {
                         appPreferences.permissionsGranted = true
                         navController.navigate(Screen.ModeSelection.route) {
-                            popUpTo(Screen.Permissions. route) { inclusive = true }
+                            popUpTo(Screen.Permissions.route) { inclusive = true }
                         }
                     },
                     onSkip = {
@@ -221,8 +221,8 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
                 ModeSelectionScreen(
                     appPreferences = appPreferences,
                     onModeSelected = { mode ->
-                        appPreferences. modeSelected = true
-                        appPreferences.selectedMode = mode. name
+                        appPreferences.modeSelected = true
+                        appPreferences.selectedMode = mode.name
                         navController.navigate(Screen.Dashboard.route) {
                             popUpTo(Screen.ModeSelection.route) { inclusive = true }
                         }
@@ -260,7 +260,7 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
                 if (showAlert) {
                     ThreatAlertDialog(
                         url = checkedUrl,
-                        threatLevel = ThreatLevel. PHISHING,
+                        threatLevel = ThreatLevel.PHISHING,
                         reason = "This URL matches known phishing patterns",
                         onBlock = { showAlert = false },
                         onViewSafely = { showAlert = false },
@@ -292,13 +292,13 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
                         navController.popBackStack()
                     },
                     onNavigateToPrivacy = {
-                        navController.navigate(Screen.Privacy. route)
+                        navController.navigate(Screen.Privacy.route)
                     },
                     onNavigateToAbout = {
                         navController.navigate(Screen.About.route)
                     },
                     onNavigateToHelp = {
-                        navController.navigate(Screen.Help. route)
+                        navController.navigate(Screen.Help.route)
                     }
                 )
             }
