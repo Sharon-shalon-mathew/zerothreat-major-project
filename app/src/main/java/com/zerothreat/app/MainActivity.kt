@@ -9,14 +9,20 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.*
+import kotlinx.coroutines.launch
 import com.zerothreat.app.data.AppPreferences
+import com.zerothreat.app.data.AppDatabase
+import com.zerothreat.app.data.CheckedUrl
+import com.zerothreat.app.data.UrlRepository
 import com. zerothreat.app.ui.alerts.ThreatAlertDialog
 import com.zerothreat.app. ui.alerts.ThreatLevel
 import com.zerothreat.app.ui.dashboard.DashboardScreen
 import com.zerothreat.app. ui.info.AboutScreen
 import com.zerothreat.app.ui.info. HelpScreen
 import com.zerothreat.app.ui.info. PrivacyPolicyScreen
+import com.zerothreat.app.ui.blacklist.BlacklistScreen
 import com.zerothreat.app.ui.manual.ManualCheckScreen
 import com.zerothreat.app.ui.mode.AppMode
 import com.zerothreat.app.ui.mode.ModeSelectionScreen
@@ -48,6 +54,7 @@ sealed class Screen(val route: String) {
     object ModeSelection : Screen("mode")
     object Dashboard : Screen("dashboard")
     object ManualCheck : Screen("manual")
+    object Blacklist : Screen("blacklist")
     object Settings : Screen("settings")
     object Privacy : Screen("privacy")
     object About : Screen("about")
@@ -57,6 +64,10 @@ sealed class Screen(val route: String) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ZeroThreatApp(appPreferences: AppPreferences) {
+    val context = LocalContext.current
+    val database = remember { AppDatabase.getDatabase(context) }
+    val repository = remember { UrlRepository(database.checkedUrlDao()) }
+    
     val navController = rememberNavController()
     var showBottomBar by remember { mutableStateOf(false) }
 
@@ -75,7 +86,8 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
     LaunchedEffect(currentRoute) {
         showBottomBar = currentRoute in listOf(
             Screen.Dashboard.route,
-            Screen.ManualCheck.route
+            Screen.ManualCheck.route,
+            Screen.Blacklist.route
         )
     }
 
@@ -113,6 +125,24 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
                         },
                         icon = { Icon(Icons.Default.Search, contentDescription = "Check Link") },
                         label = { Text("Check Link") },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = ElectricPurple,
+                            selectedTextColor = ElectricPurple,
+                            unselectedIconColor = TextMuted,
+                            unselectedTextColor = TextMuted,
+                            indicatorColor = ElectricPurple.copy(alpha = 0.2f)
+                        )
+                    )
+
+                    NavigationBarItem(
+                        selected = currentRoute == Screen.Blacklist.route,
+                        onClick = {
+                            navController.navigate(Screen.Blacklist.route) {
+                                launchSingleTop = true
+                            }
+                        },
+                        icon = { Icon(Icons.Default.Warning, contentDescription = "Blacklist") },
+                        label = { Text("Blacklist") },
                         colors = NavigationBarItemDefaults.colors(
                             selectedIconColor = ElectricPurple,
                             selectedTextColor = ElectricPurple,
@@ -201,17 +231,29 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
             }
 
             composable(Screen.Dashboard.route) {
-                DashboardScreen()
+                DashboardScreen(repository = repository)
             }
 
             composable(Screen.ManualCheck.route) {
                 var showAlert by remember { mutableStateOf(false) }
                 var checkedUrl by remember { mutableStateOf("") }
+                val scope = rememberCoroutineScope()
 
                 ManualCheckScreen(
                     onCheckUrl = { url ->
                         checkedUrl = url
                         showAlert = true
+                        // Save to database
+                        scope.launch {
+                            repository.insertUrl(
+                                CheckedUrl(
+                                    url = url,
+                                    threatLevel = "PHISHING", // Determine based on actual check
+                                    source = "Manual Check",
+                                    reason = "This URL matches known phishing patterns"
+                                )
+                            )
+                        }
                     }
                 )
 
@@ -227,6 +269,20 @@ fun ZeroThreatApp(appPreferences: AppPreferences) {
                         onDismiss = { showAlert = false }
                     )
                 }
+            }
+
+            composable(Screen.Blacklist.route) {
+                val threats by repository.threats.collectAsState(initial = emptyList())
+                val scope = rememberCoroutineScope()
+                
+                BlacklistScreen(
+                    threats = threats,
+                    onClearAll = {
+                        scope.launch {
+                            repository.clearAll()
+                        }
+                    }
+                )
             }
 
             composable(Screen.Settings.route) {

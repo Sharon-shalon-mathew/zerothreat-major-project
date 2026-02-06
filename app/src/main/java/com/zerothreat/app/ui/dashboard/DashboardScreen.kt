@@ -67,8 +67,16 @@ import com.zerothreat.app.ui.theme.TextSecondary
 import com.zerothreat.app.ui.theme.WarningYellow
 @Composable
 fun DashboardScreen(
-    viewModel:  DashboardViewModel = viewModel()
+    repository: com.zerothreat.app.data.UrlRepository? = null
 ) {
+    val viewModel: DashboardViewModel = viewModel(
+        factory = object : androidx.lifecycle.ViewModelProvider.Factory {
+            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return DashboardViewModel(repository) as T
+            }
+        }
+    )
     val uiState by viewModel.uiState.collectAsState()
 
     LazyColumn(
