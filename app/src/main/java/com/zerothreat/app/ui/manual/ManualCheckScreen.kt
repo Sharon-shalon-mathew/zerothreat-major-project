@@ -1,22 +1,22 @@
 package com.zerothreat.app.ui.manual
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation. layout.*
-import androidx.compose. foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text. KeyboardOptions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons. filled.*
-import androidx.compose. material3.*
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose. ui.text.style.TextAlign
-import androidx.compose.ui. unit.dp
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.zerothreat.app. ui.theme.*
+import com.zerothreat.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -33,10 +33,10 @@ fun ManualCheckScreen(
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier. height(32.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         Icon(
-            imageVector = Icons. Default.Search,
+            imageVector = Icons.Default.Search,
             contentDescription = "Check URL",
             tint = ElectricPurple,
             modifier = Modifier.size(80.dp)
@@ -66,13 +66,13 @@ fun ManualCheckScreen(
         OutlinedTextField(
             value = urlInput,
             onValueChange = { urlInput = it },
-            modifier = Modifier. fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             placeholder = {
                 Text("https://example.com", color = TextMuted)
             },
             leadingIcon = {
                 Icon(
-                    imageVector = Icons. Default.Link,
+                    imageVector = Icons.Default.Link,
                     contentDescription = "URL",
                     tint = ElectricPurple
                 )
@@ -81,7 +81,7 @@ fun ManualCheckScreen(
                 if (urlInput.isNotEmpty()) {
                     IconButton(onClick = { urlInput = "" }) {
                         Icon(
-                            imageVector = Icons.Default. Clear,
+                            imageVector = Icons.Default.Clear,
                             contentDescription = "Clear",
                             tint = TextSecondary
                         )
@@ -152,7 +152,7 @@ fun ManualCheckScreen(
 
         // Info Card
         Card(
-            modifier = Modifier. fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(
                 containerColor = CardBackground
             ),
@@ -164,7 +164,7 @@ fun ManualCheckScreen(
                         imageVector = Icons.Default.Info,
                         contentDescription = "Info",
                         tint = ElectricPurple,
-                        modifier = Modifier. size(24.dp)
+                        modifier = Modifier.size(24.dp)
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(

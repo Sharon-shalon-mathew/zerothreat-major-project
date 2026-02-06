@@ -1,11 +1,11 @@
 package com.zerothreat.app.ui.settings
 
-import androidx. compose.foundation.background
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx. compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose. material.icons.filled.*
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,9 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx. compose.ui.unit.sp
-import com.zerothreat. app.data.AppPreferences
-import com.zerothreat. app.ui.theme.*
+import androidx.compose.ui.unit.sp
+import com.zerothreat.app.data.AppPreferences
+import com.zerothreat.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +50,7 @@ fun SettingsScreen(
                         )
                     }
                 },
-                colors = TopAppBarDefaults. topAppBarColors(
+                colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = DarkBackground
                 )
             )
@@ -78,8 +78,8 @@ fun SettingsScreen(
                     checked = smartModeEnabled,
                     onCheckedChange = {
                         smartModeEnabled = it
-                        appPreferences. smartModeEnabled = it
-                        if (! it) {
+                        appPreferences.smartModeEnabled = it
+                        if (!it) {
                             // Turn off monitoring when smart mode is disabled
                             notificationMonitoring = false
                             linkMonitoring = false
@@ -102,7 +102,7 @@ fun SettingsScreen(
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             SettingsToggleItem(
-                                icon = Icons. Default.Notifications,
+                                icon = Icons.Default.Notifications,
                                 title = "Notification Monitoring",
                                 description = "Scan incoming notifications",
                                 checked = notificationMonitoring,
@@ -113,18 +113,18 @@ fun SettingsScreen(
                             )
 
                             Divider(
-                                color = TextMuted. copy(alpha = 0.2f),
-                                modifier = Modifier. padding(vertical = 12.dp)
+                                color = TextMuted.copy(alpha = 0.2f),
+                                modifier = Modifier.padding(vertical = 12.dp)
                             )
 
                             SettingsToggleItem(
-                                icon = Icons. Default.VpnKey,
+                                icon = Icons.Default.VpnKey,
                                 title = "Link Monitoring (VPN)",
                                 description = "Monitor clicked links",
                                 checked = linkMonitoring,
                                 onCheckedChange = {
                                     linkMonitoring = it
-                                    appPreferences. linkMonitoring = it
+                                    appPreferences.linkMonitoring = it
                                 }
                             )
                         }
@@ -181,7 +181,7 @@ fun SettingsScreen(
 
             item {
                 SettingsNavigationCard(
-                    icon = Icons.Default. PrivacyTip,
+                    icon = Icons.Default.PrivacyTip,
                     title = "Privacy Policy",
                     description = "Learn how we protect your data",
                     onClick = onNavigateToPrivacy
@@ -202,7 +202,7 @@ fun SettingsScreen(
                     description = "Version 1.0.0",
                     onClick = onNavigateToAbout
                 )
-                Spacer(modifier = Modifier. height(12.dp))
+                Spacer(modifier = Modifier.height(12.dp))
             }
 
             item {
@@ -274,7 +274,7 @@ fun SettingsToggleCard(
                 )
             }
 
-            Spacer(modifier = Modifier. width(12.dp))
+            Spacer(modifier = Modifier.width(12.dp))
 
             Switch(
                 checked = checked,
@@ -299,7 +299,7 @@ fun SettingsToggleItem(
     onCheckedChange: (Boolean) -> Unit
 ) {
     Row(
-        modifier = Modifier. fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -363,7 +363,7 @@ fun SettingsActionCard(
                 imageVector = icon,
                 contentDescription = title,
                 tint = if (isDestructive) DangerRed else ElectricPurple,
-                modifier = Modifier. size(32.dp)
+                modifier = Modifier.size(32.dp)
             )
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -429,7 +429,7 @@ fun SettingsNavigationCard(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            Column(modifier = Modifier. weight(1f)) {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
@@ -439,7 +439,7 @@ fun SettingsNavigationCard(
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = description,
-                    style = MaterialTheme. typography.bodySmall,
+                    style = MaterialTheme.typography.bodySmall,
                     color = TextSecondary,
                     lineHeight = 18.sp
                 )

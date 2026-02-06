@@ -2,17 +2,17 @@
 package com.zerothreat.app.ui.info
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation. layout.*
-import androidx.compose. foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose. material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.*
-import androidx.compose.runtime. Composable
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui. text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui. unit.sp
+import androidx.compose.ui.unit.sp
 import com.zerothreat.app.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,7 +58,7 @@ fun PrivacyPolicyScreen(onNavigateBack: () -> Unit) {
                 )
             }
 
-            item { Spacer(modifier = Modifier. height(16.dp)) }
+            item { Spacer(modifier = Modifier.height(16.dp)) }
 
             item {
                 InfoSection(
@@ -157,14 +157,14 @@ fun AboutScreen(onNavigateBack: () -> Unit) {
                     ) {
                         Text(
                             text = "ZeroThreat",
-                            style = MaterialTheme.typography. headlineMedium,
+                            style = MaterialTheme.typography.headlineMedium,
                             color = ElectricPurple,
                             fontWeight = FontWeight.Bold
                         )
-                        Spacer(modifier = Modifier. height(8.dp))
+                        Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = "Version 1.0.0",
-                            style = MaterialTheme.typography. bodyMedium,
+                            style = MaterialTheme.typography.bodyMedium,
                             color = TextSecondary
                         )
                     }
@@ -221,7 +221,7 @@ fun AboutScreen(onNavigateBack: () -> Unit) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api:: class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HelpScreen(onNavigateBack: () -> Unit) {
     Scaffold(
@@ -237,7 +237,7 @@ fun HelpScreen(onNavigateBack: () -> Unit) {
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
-                            imageVector = Icons.Default. ArrowBack,
+                            imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Back",
                             tint = TextPrimary
                         )
@@ -287,7 +287,7 @@ fun HelpScreen(onNavigateBack: () -> Unit) {
             item {
                 InfoSection(
                     title = "Contact Support",
-                    content = "For help or bug reports, contact:\nzerothreat. support@example.com"
+                    content = "For help or bug reports, contact:\nzerothreat.support@example.com"
                 )
             }
         }

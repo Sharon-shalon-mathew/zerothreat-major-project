@@ -1,26 +1,26 @@
 package com.zerothreat.app.ui.splash
 
-import androidx. compose.animation.core.Animatable
-import androidx. compose.animation.core.tween
-import androidx.compose.foundation. Image
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation. layout.*
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
-import androidx. compose.material3.Text
-import androidx.compose.runtime. Composable
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
-import androidx.compose. ui.Alignment
-import androidx. compose.ui.Modifier
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui. res.painterResource
-import androidx. compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui. unit.sp
-import com.zerothreat.app. R
-import com.zerothreat.app.ui.theme. DarkBackground
+import androidx.compose.ui.unit.sp
+import com.zerothreat.app.R
+import com.zerothreat.app.ui.theme.DarkBackground
 import com.zerothreat.app.ui.theme.ElectricPurple
-import com.zerothreat.app. ui.theme.TextPrimary
+import com.zerothreat.app.ui.theme.TextPrimary
 import com.zerothreat.app.ui.theme.TextSecondary
 import kotlinx.coroutines.delay
 
@@ -52,7 +52,7 @@ fun SplashScreen(
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier. alpha(alpha.value)
+            modifier = Modifier.alpha(alpha.value)
         ) {
             Image(
                 painter = painterResource(id = R.drawable.shield_logo),
@@ -82,7 +82,7 @@ fun SplashScreen(
 
             // Loading indicator dots
             Row(
-                horizontalArrangement = Arrangement. spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 repeat(3) {
                     Box(
