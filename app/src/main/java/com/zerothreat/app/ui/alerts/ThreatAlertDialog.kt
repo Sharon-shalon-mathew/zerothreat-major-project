@@ -1,9 +1,9 @@
 package com.zerothreat.app.ui.alerts
-
+// Hello Sharon
 import androidx.compose.foundation.background
-import androidx.compose. foundation.layout.*
-import androidx. compose.foundation.shape.RoundedCornerShape
-import androidx. compose.material.icons.Icons
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -12,9 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx. compose.ui. unit.sp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window. DialogProperties
+import androidx.compose.ui.window.DialogProperties
 import com.zerothreat.app.ui.theme.*
 
 enum class ThreatLevel {
@@ -23,9 +23,9 @@ enum class ThreatLevel {
 
 @Composable
 fun ThreatAlertDialog(
-    url:  String,
+    url: String,
     threatLevel: ThreatLevel,
-    reason:  String,
+    reason: String,
     onBlock: () -> Unit,
     onViewSafely: () -> Unit,
     onIgnore: () -> Unit,
@@ -49,22 +49,22 @@ fun ThreatAlertDialog(
             shape = RoundedCornerShape(20.dp)
         ) {
             Column(
-                modifier = Modifier. padding(24.dp),
+                modifier = Modifier.padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
                     imageVector = when (threatLevel) {
-                        ThreatLevel. SAFE -> Icons.Default.CheckCircle
+                        ThreatLevel.SAFE -> Icons.Default.CheckCircle
                         ThreatLevel.SUSPICIOUS -> Icons.Default.Warning
-                        ThreatLevel.PHISHING -> Icons. Default.Dangerous
+                        ThreatLevel.PHISHING -> Icons.Default.Dangerous
                     },
                     contentDescription = "Threat Level",
                     tint = when (threatLevel) {
-                        ThreatLevel. SAFE -> SafeGreen
+                        ThreatLevel.SAFE -> SafeGreen
                         ThreatLevel.SUSPICIOUS -> WarningYellow
                         ThreatLevel.PHISHING -> DangerRed
                     },
-                    modifier = Modifier. size(64.dp)
+                    modifier = Modifier.size(64.dp)
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -75,7 +75,7 @@ fun ThreatAlertDialog(
                         ThreatLevel.SUSPICIOUS -> "Suspicious Link Detected"
                         ThreatLevel.PHISHING -> "⚠️ PHISHING ALERT"
                     },
-                    style = MaterialTheme. typography.headlineSmall,
+                    style = MaterialTheme.typography.headlineSmall,
                     color = when (threatLevel) {
                         ThreatLevel.SAFE -> SafeGreen
                         ThreatLevel.SUSPICIOUS -> WarningYellow
@@ -88,7 +88,7 @@ fun ThreatAlertDialog(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Card(
-                    modifier = Modifier. fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.cardColors(
                         containerColor = DarkBackground
                     ),
@@ -96,7 +96,7 @@ fun ThreatAlertDialog(
                 ) {
                     Text(
                         text = url,
-                        style = MaterialTheme.typography. bodyMedium,
+                        style = MaterialTheme.typography.bodyMedium,
                         color = TextPrimary,
                         modifier = Modifier.padding(12.dp),
                         textAlign = TextAlign.Center
@@ -132,7 +132,7 @@ fun ThreatAlertDialog(
 
                 OutlinedButton(
                     onClick = onIgnore,
-                    modifier = Modifier. fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.outlinedButtonColors(
                         contentColor = TextSecondary
                     )
